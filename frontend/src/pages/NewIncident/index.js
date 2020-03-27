@@ -9,6 +9,7 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [value, setValue] = useState('');
@@ -18,7 +19,7 @@ export default function NewIncident() {
     const history = useHistory();
 
     async function handleNewIncident(e) {
-        e.preventeDefault();
+        e.preventDefault();
 
         const data = {
             title, description, value,
@@ -30,6 +31,7 @@ export default function NewIncident() {
                     Authorization: ongId,
                 }
             })
+
             history.push('/profile');
         } catch (err) {
             alert('Erro ao cadastrar caso.');
@@ -61,11 +63,13 @@ export default function NewIncident() {
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
+
                     <textarea 
                         placeholder="Descrição do caso"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
+
                     <input 
                         placeholder="Valor em Reais"
                         value={value}
